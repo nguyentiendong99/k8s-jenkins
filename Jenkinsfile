@@ -17,6 +17,13 @@ pipeline {
                 }
             }
         }
+        stage('Docker logout'){
+                    steps{
+                        script{
+                            sh 'docker logout'
+                        }
+                    }
+                }
         stage('Push image to Hub'){
             steps{
                 script{
@@ -29,9 +36,5 @@ pipeline {
         }
 
     }
-    post {
-		always {
-			sh 'docker logout'
-		}
-	}
+
 }
