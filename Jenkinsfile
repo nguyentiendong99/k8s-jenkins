@@ -10,13 +10,13 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-        stage('Build docker image'){
-            steps{
-                script{
-                    sh 'docker build -t dongnguyen1999/k8s-jenkins .'
-                }
-            }
-        }
+//         stage('Build docker image'){
+//             steps{
+//                 script{
+//                     sh 'docker build -t dongnguyen1999/k8s-jenkins .'
+//                 }
+//             }
+//         }
         stage('Docker logout'){
                     steps{
                         script{
