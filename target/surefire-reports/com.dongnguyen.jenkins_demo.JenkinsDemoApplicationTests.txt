@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.dongnguyen.jenkins_demo.JenkinsDemoApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.348 s - in com.dongnguyen.jenkins_demo.JenkinsDemoApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.424 s - in com.dongnguyen.jenkins_demo.JenkinsDemoApplicationTests
