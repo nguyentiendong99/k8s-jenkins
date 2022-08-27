@@ -4,12 +4,12 @@ pipeline {
         maven 'maven'
     }
     stages{
-        stage('Build Maven'){
-            steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nguyentiendong99/k8s-jenkins']]])
-                sh 'mvn clean install'
-            }
-        }
+        // stage('Build Maven'){
+        //     steps{
+        //         checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nguyentiendong99/k8s-jenkins']]])
+        //         sh 'mvn clean install'
+        //     }
+        // }
         stage('Build docker image'){
             steps{
                 script{
