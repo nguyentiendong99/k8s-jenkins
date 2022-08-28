@@ -4,16 +4,12 @@ pipeline {
         maven 'maven'
     }
     stages{
-        stage('Initialize'){
-            def dockerHome = tool 'myDocker'
-            env.PATH = "${dockerHome}/bin:${env.PATH}"
+        stage('Build Maven') {
+            steps{
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nguyentiendong99/k8s-jenkins']]])
+                sh 'mvn clean install'
+            }
         }
-        // stage('Build Maven'){
-        //     steps{
-        //         checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nguyentiendong99/k8s-jenkins']]])
-        //         sh 'mvn clean install'
-        //     }
-        // }
         stage('Build docker image'){
             steps{
                 script{
@@ -24,8 +20,9 @@ pipeline {
         stage('Push image to Hub'){
             steps{
                 script{
-                   withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
-                   sh 'docker login -u dongnguyen1999 -p ${dockerhub}'
+                   withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerpwd')]) {
+                   sh 'docker login -u dongnguyen1999 -p ${dockerpwd}'
+
                 }
                    sh 'docker push dongnguyen1999/k8s-jenkins'
                 }
@@ -34,7 +31,7 @@ pipeline {
         stage('Deploy to k8s'){
             steps{
                 script{
-                    kubernetesDeploy (configs: 'deployservice.yaml',kubeconfigId: 'kube-config')
+                    kubernetesDeploy (configs: 'deployservice.yaml',kubeconfigId: 'kubeconfig')
                 }
             }
         }
