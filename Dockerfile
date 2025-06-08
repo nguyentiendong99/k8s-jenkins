@@ -1,4 +1,9 @@
+FROM maven:2.7.2-jdk-11 AS builder
+WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
+
 FROM openjdk:11
-EXPOSE 8085
-ADD target/k8s-jenkins.jar k8s-jenkins.jar
-ENTRYPOINT ["java","-jar","k8s-jenkins.jar"]
+WORKDIR /app
+COPY --from=builder /app/target/*.jar app.jar
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
