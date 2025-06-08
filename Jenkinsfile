@@ -40,7 +40,12 @@
 
 
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'maven:3.8.7-openjdk-11'
+            args '-v $HOME/.m2:/root/.m2'  // để cache Maven dependencies
+        }
+    }
     environment {
         IMAGE = 'dongnguyen1999/spring-boot-app:v1'
         CREDENTIALS_ID = 'dockerhub-credentials'
