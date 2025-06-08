@@ -6,12 +6,12 @@ metadata:
 spec:
   containers:
     - name: maven
-      image: maven:3.8.7-openjdk-11
+      image: maven:3.8.7-openjdk
       command:
         - cat
       tty: true
     - name: docker
-      image: docker:24.0.7-cli
+      image: docker:24.0.7
       command:
         - cat
       tty: true
