@@ -1,8 +1,8 @@
 pipeline {
   agent {
     kubernetes {
-      yamlFile 'pod-template.yaml'
-      defaultContainer 'maven'
+        label 'spring'
+        defaultContainer 'maven'
     }
   }
 
