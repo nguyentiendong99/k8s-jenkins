@@ -42,7 +42,7 @@ pipeline {
 
     stage('Deploy to Kubernetes') {
       steps {
-        container('maven') {
+        container('kubectl') {
           sh 'kubectl apply -f deployment.yaml'
         }
       }
