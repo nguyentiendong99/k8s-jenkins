@@ -1,8 +1,8 @@
 pipeline {
   agent {
     kubernetes {
-        label 'spring'
-        defaultContainer 'maven'
+      label 'spring'
+      defaultContainer 'maven'
     }
   }
 
